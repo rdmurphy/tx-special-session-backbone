@@ -119,20 +119,5 @@ var TopicListView = Backbone.View.extend({
 
 });
 
-// var SessionRouter = Backbone.Router.extend({
-//   routes: {
-//     'session/:id': 'getSession'
-//   },
-
-//   getSession: function(id) {
-//     topics.setId(id);
-//     topics.fetch();
-//   }
-
-// });
-
 new SessionMenuView();
 new TopicListView();
-
-// var router = new SessionRouter();
-// Backbone.history.start();
