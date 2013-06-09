@@ -36,7 +36,14 @@ def response_handler(data):
 
 @api.route('/')
 def index():
-    return render_template('index.html')
+    kwargs = {
+        'cls': DatetimeEncoder,
+        'separators': (',', ':')
+    }
+
+    sessions = Session.select()
+    payload = json.dumps([i for i in sessions.dicts()], **kwargs)
+    return render_template('index.html', sessions=payload)
 
 
 @api.route('/sessions')
@@ -59,4 +66,4 @@ def get_single_session(session_id):
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    api.run(host="0.0.0.0", port=port)
+    api.run(host="0.0.0.0", port=port, debug=True)

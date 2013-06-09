@@ -65,7 +65,11 @@ var SessionMenuView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(sessions, 'add', this.addToMenu);
-    sessions.fetch();
+    if(sessions_bootstrap) {
+      sessions.set(sessions_bootstrap);
+    } else {
+      sessions.fetch();
+    }
   },
 
   addToMenu: function(session) {
